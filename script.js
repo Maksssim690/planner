@@ -12,6 +12,7 @@ function addNote() {
     input.value = "";
     loadNotes();
 }
+
 function loadNotes() {
     let notesList = document.getElementById("notesList");
     notesList.innerHTML = "";
@@ -32,20 +33,19 @@ function loadNotes() {
 
         li.appendChild(deleteBtn);
         li.onclick = function () {
-            toggleDeleteButton(deleteBtn);
+            highlightNote(li);
         };
 
         notesList.appendChild(li);
     });
 }
 
-function toggleDeleteButton(button) {
-    document.querySelectorAll(".delete-btn").forEach(btn => {
-        if (btn !== button) btn.style.display = "none";
+function highlightNote(li) {
+    document.querySelectorAll(".note-item").forEach(item => {
+        item.classList.remove("highlighted");
     });
-    button.style.display = button.style.display === "inline-block" ? "none" : "inline-block";
+    li.classList.add("highlighted");
 }
-
 
 function removeNote(index) {
     let notes = JSON.parse(localStorage.getItem("notes"));
@@ -53,6 +53,7 @@ function removeNote(index) {
     localStorage.setItem("notes", JSON.stringify(notes));
     loadNotes();
 }
+
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/service-worker.js")
         .then(() => console.log("Service Worker зарегистрирован"))
