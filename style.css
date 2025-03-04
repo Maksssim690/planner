@@ -8,15 +8,70 @@ input, button {
     padding: 10px;
     margin: 5px;
 }
+h1{
+    font-size: 45px;
+    margin-top: 200px;
+    color: #23543b;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+h1:hover{
+    color: #fafbd1;
+    transform: scale(1.2);
+}
+button {
+    padding: 10px 20px;
+    background-color: #3e9241;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
+
+button:hover {
+    background-color: #205423; 
+    transform: scale(1.1); 
+}
+button:active{
+    background-color: rgba(220, 151, 14, 0.76);
+    transform: scale(1.0);
+
+}
+input{
+    background-color: #fafbd1;
+    width: 200px;
+    border-radius: 10px;
+    border-color: rgb(24, 111, 68);
+}
 ul {
     list-style: none;
     padding: 0;
 }
 
-li {
-    background: #f0f0f0;
-    margin: 5px;
-    padding: 10px;
+.delete-btn {
+    display: none;
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px;
     border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #1c6b384e;
+    margin: 5px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+
+body{
+    background: linear-gradient(to right, #32b74a53, #1a354fa9);
 }

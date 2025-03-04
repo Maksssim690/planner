@@ -12,7 +12,6 @@ function addNote() {
     input.value = "";
     loadNotes();
 }
-
 function loadNotes() {
     let notesList = document.getElementById("notesList");
     notesList.innerHTML = "";
@@ -21,10 +20,32 @@ function loadNotes() {
     notes.forEach((note, index) => {
         let li = document.createElement("li");
         li.textContent = note;
-        li.onclick = () => removeNote(index);
+        li.classList.add("note-item");
+
+        let deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "✖";
+        deleteBtn.className = "delete-btn";
+        deleteBtn.onclick = (event) => {
+            event.stopPropagation();
+            removeNote(index);
+        };
+
+        li.appendChild(deleteBtn);
+        li.onclick = function () {
+            toggleDeleteButton(deleteBtn);
+        };
+
         notesList.appendChild(li);
     });
 }
+
+function toggleDeleteButton(button) {
+    document.querySelectorAll(".delete-btn").forEach(btn => {
+        if (btn !== button) btn.style.display = "none";
+    });
+    button.style.display = button.style.display === "inline-block" ? "none" : "inline-block";
+}
+
 
 function removeNote(index) {
     let notes = JSON.parse(localStorage.getItem("notes"));
